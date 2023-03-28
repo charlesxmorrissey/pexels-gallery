@@ -1,0 +1,40 @@
+.pagePadding {
+  padding: 0 var(--space-16);
+}
+
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.pageContainer {
+  composes: pagePadding;
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin: 0 auto var(--space-32);
+  width: 100%;
+}
+
+.pageContent {
+  max-width: var(--max-width);
+  width: 100%;
+}
+
+.pageFooter {
+  composes: pagePadding;
+  align-items: center;
+  background-color: var(--color-grey-900);
+  color: var(--color-grey-50);
+  display: flex;
+  font-size: 14px;
+  height: 60px;
+}
+
+@media (--medium-viewport) {
+  .pagePadding {
+    padding: 0 var(--space-32);
+  }
+}
