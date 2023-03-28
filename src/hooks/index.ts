@@ -1,3 +1,3 @@
-import usePhotos from './usePhotos'
+import useMedia from './useMedia'
 
-export { usePhotos }
+export { useMedia }

@@ -11,8 +11,8 @@ const inter = Inter({ subsets: ['latin'] })
 const App = ({ Component, pageProps }: AppProps) => (
   <>
     <Head>
-      <title>Gallery using the Pexel api</title>
-      <meta content='Gallery using the Pexel api' name='description' />
+      <title>Gallery using the Pexels api</title>
+      <meta content='Gallery using the Pexels api' name='description' />
       <meta content='width=device-width, initial-scale=1' name='viewport' />
       <link href='/favicon.ico' rel='icon' />
     </Head>

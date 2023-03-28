@@ -1,47 +1,37 @@
 import classNames from 'classnames'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { memo, useCallback, useMemo } from 'react'
+import { useCallback } from 'react'
 
 import PexelsLogoIcon from 'assets/icons/pexelsLogo.svg'
-import GalleryList from 'components/GalleryList'
-import Pagination from 'components/Pagination'
+import CategorySwitcher from 'components/CategorySwitcher'
+import Gallery from 'components/Gallery'
 import SearchForm from 'components/SearchForm'
-import { photosPerPage } from 'constant'
-import { usePhotos } from 'hooks'
-import { Photos } from 'types'
+import { Category } from 'constant'
+import { useMedia } from 'hooks'
+import { Photos, Videos } from 'types'
 
 import styles from './GalleryTemplate.module.css'
 
 interface Props {
-  fallbackData: Photos
+  fallbackData: Photos | Videos
 }
 
-const MemoizedPagination = memo(Pagination)
 const routerOptions = { scroll: false, shallow: true }
 
 export const GalleryTemplate = ({ fallbackData }: Props) => {
+  const { isLoading, mediaData } = useMedia(fallbackData)
   const router = useRouter()
-  const { isLoading, nextPageNum, photoData, prevPageNum } =
-    usePhotos(fallbackData)
 
-  const { query: { page, query } = {} } = router
-  const pageTotal = useMemo(
-    () => Math.ceil(photoData?.total_results / photosPerPage),
-    [photoData?.total_results]
-  )
+  const { query: { category = Category.photos, query } = {} } = router
 
-  const handleClickNavigate = useCallback(
-    (pageNum: number | undefined) => {
-      if (!isLoading && !!pageNum) {
-        router.push(
-          query ? `${pageNum}?query=${query}` : `${pageNum}`,
-          undefined,
-          routerOptions
-        )
+  const handleClickCategory = useCallback(
+    (category: Category) => {
+      if (!isLoading) {
+        router.push(category, undefined, routerOptions)
       }
     },
-    [isLoading, router, query]
+    [isLoading, router]
   )
 
   const handleSubmitSearch = useCallback(
@@ -51,19 +41,20 @@ export const GalleryTemplate = ({ fallbackData }: Props) => {
       const searchTerm = event.currentTarget.query.value
 
       router.replace(
-        searchTerm ? `/?query=${searchTerm}` : '/',
+        searchTerm ? `/${category}/?query=${searchTerm}` : '/',
         undefined,
         routerOptions
       )
     },
-    [router]
+    [category, router]
   )
 
   const renderGalleryOrError = () => {
-    if (!photoData.status) {
+    if (!mediaData.status) {
       return (
-        <GalleryList
-          photos={photoData?.photos}
+        <Gallery
+          category={category}
+          media={mediaData[category.toString()]}
           searchTerm={query?.toString()}
         />
       )
@@ -72,7 +63,7 @@ export const GalleryTemplate = ({ fallbackData }: Props) => {
     return (
       <h2 className={styles.galleryErrorMessage}>
         <div className={styles.galleryErrorEmoji}>¯\_(ツ)_/¯</div>
-        {photoData.status}: {photoData.code}
+        {mediaData.status}: {mediaData.code}
       </h2>
     )
   }
@@ -80,24 +71,21 @@ export const GalleryTemplate = ({ fallbackData }: Props) => {
   return (
     <div className={styles.gallery}>
       <header className={styles.galleryHeader}>
-        <Link href='/'>
+        <Link className={styles.galleryRootLink} href='/'>
           <PexelsLogoIcon
-            aria-label='Logo'
+            aria-label='Pexels logo'
             className={styles.galleryHeaderIcon}
           />
-        </Link>
 
-        <h1 className={styles.galleryTitle}>Pexel gallery</h1>
+          <h1 className={styles.galleryTitle}>Pexels</h1>
+        </Link>
 
         <nav className={styles.galleryNav}>
           <SearchForm onSubmitSearch={handleSubmitSearch} />
 
-          <MemoizedPagination
-            currPage={page?.toString() ?? '1'}
-            nextPageNum={nextPageNum}
-            onClickNavigate={handleClickNavigate}
-            pageTotal={pageTotal}
-            prevPageNum={prevPageNum}
+          <CategorySwitcher
+            category={category}
+            onClickCategory={handleClickCategory}
           />
         </nav>
       </header>

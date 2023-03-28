@@ -1,3 +1,4 @@
+import { Category, ResourcePath } from 'constant'
 import { Params } from 'types'
 
 export const fetchData = async (url: string, params: Params) => {
@@ -22,3 +23,14 @@ export const stringifyParams = <T extends Params>(params: T) =>
   Object.keys(params)
     .map((key) => `${key}=${params[key]}`)
     .join('&')
+
+export const getPath = (
+  query: boolean
+): Record<string, { path: ResourcePath }> => ({
+  [Category.videos]: {
+    path: query ? ResourcePath.searchVideos : ResourcePath.popular,
+  },
+  [Category.photos]: {
+    path: query ? ResourcePath.search : ResourcePath.curated,
+  },
+})

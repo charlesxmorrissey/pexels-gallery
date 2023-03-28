@@ -3,17 +3,16 @@ import Image from 'next/image'
 import { useState } from 'react'
 
 import LinkIcon from 'assets/icons/link.svg'
+import styles from 'components/Card/Card.module.css'
 import { Photo } from 'types'
 
-import styles from './GalleryListItem.module.css'
-
 interface Props {
-  photoData: Photo
+  data: Photo
   priority?: boolean
 }
 
-const GalleryListItem = ({
-  photoData: { alt, avg_color, photographer, photographer_url, src },
+export const PhotoCard = ({
+  data: { alt, avg_color, photographer, photographer_url, src },
   priority = false,
 }: Props) => {
   const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false)
@@ -55,5 +54,3 @@ const GalleryListItem = ({
     </div>
   )
 }
-
-export default GalleryListItem

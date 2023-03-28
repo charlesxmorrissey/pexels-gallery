@@ -2,36 +2,34 @@ import type { NextPage } from 'next'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
 
 import { GalleryTemplate } from 'components/PageTemplates/GalleryTemplate'
-import { ResourcePath, photoBaseUrl, photosPerPage } from 'constant'
-import { Params, Photos } from 'types'
-import { fetchData } from 'utils'
+import { ApiBaseUrl, Category, MediaPerPage } from 'constant'
+import { Params, Photos, Videos } from 'types'
+import { fetchData, getPath } from 'utils'
 
 interface Props {
-  photoData: Photos
+  mediaData: Photos | Videos
 }
 
-export const GalleryPage: NextPage<Props> = ({ photoData }) => (
-  <GalleryTemplate fallbackData={photoData} />
+export const GalleryPage: NextPage<Props> = ({ mediaData }) => (
+  <GalleryTemplate fallbackData={mediaData} />
 )
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
-  const { query: { page, query } = {} } = context
-  const currPage = Number(page) || 1
-  const path = !query ? ResourcePath.curated : ResourcePath.search
+  const { query: { category = Category.photos, query } = {} } = context
+  const { path } = getPath(!!query)[Category[category as Category]]
 
   const params: Params = {
-    per_page: photosPerPage,
-    ...(page && { page: currPage }),
+    per_page: MediaPerPage,
     ...(query && { query: query.toString() }),
   }
 
-  const photoData = await fetchData(`${photoBaseUrl}${path}`, params)
+  const mediaData = await fetchData(`${ApiBaseUrl}${path}`, params)
 
   return {
     props: {
-      photoData,
+      mediaData,
     },
   }
 }
