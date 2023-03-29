@@ -1,0 +1,83 @@
+.enter {
+  opacity: 0;
+}
+
+.exit,
+.enterActive {
+  opacity: 1;
+  transition: opacity var(--transition-timing-3) ease-out;
+}
+
+.exitActive {
+  opacity: 0;
+  transition: opacity var(--transition-timing-3) ease-out;
+}
+
+.modalContainer {
+  inset: 0;
+  position: fixed;
+  z-index: 1000;
+}
+
+.modalContent {
+  backface-visibility: hidden;
+  background-color: var(--color-grey-50);
+  height: 100%;
+  padding: var(--space-16);
+  transform: translate3d(0, 0, 0);
+}
+
+@media (--medium-viewport) {
+  .modalOverlay {
+    background-color: rgb(0 0 0 / 40%);
+    inset: 0;
+    position: fixed;
+    z-index: 999;
+  }
+
+  .modalContainer {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .modalContent {
+    border-radius: var(--border-radius-small);
+    height: 608px;
+    padding: var(--space-32);
+    width: 510px;
+    will-change: transform;
+  }
+
+  .enterActive .modalContent {
+    animation: slide-up var(--transition-timing-3) ease-out forwards;
+  }
+
+  .exitActive .modalContent {
+    animation: slide-down var(--transition-timing-3) ease-out forwards;
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(70px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-down {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(70px);
+  }
+}

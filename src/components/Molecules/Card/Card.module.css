@@ -31,6 +31,17 @@
   object-fit: cover;
 }
 
+.cardPlayIcon {
+  bottom: var(--space-8);
+  fill: var(--color-grey-50);
+  filter: drop-shadow(0 0 1px rgb(12 26 75 / 20%))
+    drop-shadow(0 1px 3px rgb(50 50 71 / 10%));
+  height: 23px;
+  left: var(--space-8);
+  position: absolute;
+  width: 28px;
+}
+
 .cardMeta {
   align-items: center;
   display: flex;
@@ -54,7 +65,7 @@
   text-decoration: none;
 }
 
-.cardIcon {
+.cardLinkIcon {
   fill: currentcolor;
   height: 24px;
 }

@@ -3,51 +3,59 @@ import Image from 'next/image'
 import { useState } from 'react'
 
 import LinkIcon from 'assets/icons/link.svg'
-import styles from 'components/Card/Card.module.css'
-import { Photo } from 'types'
+import PlayIcon from 'assets/icons/play.svg'
+import styles from 'components/Molecules/Card/Card.module.css'
+import { Photo, Video } from 'types'
 
 interface Props {
-  data: Photo
+  data: Video | Photo
   priority?: boolean
 }
 
-export const PhotoCard = ({
-  data: { alt, avg_color, photographer, photographer_url, src },
-  priority = false,
-}: Props) => {
+export const VideoCard = ({ data, priority = false }: Props) => {
   const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false)
+
+  const {
+    image,
+    user: { name, url },
+  } = data as Video
 
   return (
     <div className={styles.card}>
-      <div className={styles.cardImageWrapper}>
+      <div
+        className={classNames(
+          styles.cardImageWrapper,
+          styles.cardImageWrapperFill
+        )}
+      >
         <Image
-          alt={alt}
-          className={classNames(styles.cardImage, {
+          alt=''
+          className={classNames(styles.cardImage, styles.cardImageFill, {
             [styles.cardImageLoaded]: isImageLoaded,
           })}
-          height={513}
+          fill
           onLoadingComplete={() => setIsImageLoaded(true)}
           placeholder='empty'
           priority={priority}
           sizes='(min-width: 768px) 33vw, 100vw'
-          src={src.portrait}
-          style={{ backgroundColor: `${avg_color}` }}
-          width={342}
+          src={image}
         />
+
+        <PlayIcon aria-hidden='true' className={styles.cardPlayIcon} />
       </div>
 
       <div className={styles.cardMeta}>
-        {photographer && <p className={styles.cardMetaName}>{photographer}</p>}
+        {name && <p className={styles.cardMetaName}>{name}</p>}
 
-        {photographer_url && (
+        {url && (
           <a
             aria-label={`Visit photographer's url`}
             className={styles.cardLink}
-            href={photographer_url}
+            href={url}
             rel='noreferrer'
             target='_blank'
           >
-            <LinkIcon className={styles.cardIcon} />
+            <LinkIcon className={styles.cardLinkIcon} />
           </a>
         )}
       </div>

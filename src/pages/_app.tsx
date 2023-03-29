@@ -2,7 +2,7 @@ import type { AppProps } from 'next/app'
 import { Inter } from 'next/font/google'
 import Head from 'next/head'
 
-import PageLayout from 'components/PageLayout'
+import PageLayout from 'components/Atoms/PageLayout'
 
 import 'assets/styles/app.css'
 
