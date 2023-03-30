@@ -3,17 +3,16 @@ import Image from 'next/image'
 import { useState } from 'react'
 
 import LinkIcon from 'assets/icons/link.svg'
+import { CardProps } from 'components/Molecules/Card'
 import styles from 'components/Molecules/Card/Card.module.css'
 import { Photo } from 'types'
 
-interface Props {
+interface Props extends CardProps {
   data: Photo
-  onClickOpenModal: () => void
-  priority?: boolean
 }
 
 export const PhotoCard = ({
-  data: { alt, avg_color, photographer, photographer_url, src },
+  data: { alt, avg_color, id, photographer, photographer_url, src },
   onClickOpenModal,
   priority = false,
 }: Props) => {
@@ -28,14 +27,19 @@ export const PhotoCard = ({
             [styles.cardImageLoaded]: isImageLoaded,
           })}
           height={513}
-          onClick={onClickOpenModal}
           onLoadingComplete={() => setIsImageLoaded(true)}
-          placeholder='empty'
           priority={priority}
           sizes='(min-width: 768px) 33vw, 100vw'
           src={src.portrait}
           style={{ backgroundColor: `${avg_color}` }}
           width={342}
+        />
+
+        <button
+          aria-label='Open detail'
+          className={styles.cardBtn}
+          onClick={() => onClickOpenModal(id)}
+          type='button'
         />
       </div>
 

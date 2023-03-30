@@ -26,10 +26,12 @@
   --font-weight-medium: 500;
   --font-weight-regular: 400;
   --max-width: 1440px;
+  --space-4: 4px;
   --space-8: 0.5rem;
   --space-16: 1rem;
   --space-24: 1.5rem;
   --space-32: 2rem;
+  --space-48: 3rem;
   --transition-timing-1: 100ms;
   --transition-timing-2: 200ms;
   --transition-timing-3: 300ms;

@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import dynamic from 'next/dynamic'
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useMemo, useRef } from 'react'
 import { CSSTransition } from 'react-transition-group'
 
 import styles from './Modal.module.css'
@@ -22,18 +22,53 @@ export const Modal = ({
   modalContent,
   toggleVisibility,
 }: Props) => {
-  const nodeRef = useRef(null)
+  const modalRef = useRef<HTMLDivElement>(null)
+
+  const handleTabKey = useCallback((e: KeyboardEvent) => {
+    const focusableModalElements =
+      modalRef &&
+      modalRef.current &&
+      modalRef.current.querySelectorAll('button')
+
+    const firstElement = focusableModalElements?.[0]
+    const lastElement =
+      focusableModalElements?.[focusableModalElements.length - 1]
+
+    if (!e.shiftKey && document.activeElement !== firstElement) {
+      firstElement?.focus()
+
+      return e.preventDefault()
+    }
+
+    if (e.shiftKey && document.activeElement !== lastElement) {
+      lastElement?.focus()
+
+      return e.preventDefault()
+    }
+  }, [])
+
+  const keyListenersMap = useMemo(
+    () =>
+      new Map([
+        ['Escape', toggleVisibility],
+        ['Tab', handleTabKey],
+      ]),
+    [handleTabKey, toggleVisibility]
+  )
 
   useEffect(() => {
-    const closeOnEscapeKey = (e: KeyboardEvent) =>
-      e.key === 'Escape' ? toggleVisibility() : null
+    if (isVisible) {
+      const keyListener = (e: KeyboardEvent) => {
+        const listener = keyListenersMap.get(e.key)
 
-    document.body.addEventListener('keydown', closeOnEscapeKey)
+        return listener && listener(e)
+      }
 
-    return () => {
-      document.body.removeEventListener('keydown', closeOnEscapeKey)
+      document.addEventListener('keydown', keyListener)
+
+      return () => document.removeEventListener('keydown', keyListener)
     }
-  }, [toggleVisibility])
+  }, [isVisible, keyListenersMap])
 
   return (
     <Portal>
@@ -41,11 +76,11 @@ export const Modal = ({
         classNames={{ ...styles }}
         in={isVisible}
         mountOnEnter
-        nodeRef={nodeRef}
+        nodeRef={modalRef}
         timeout={{ enter: 300, exit: 300 }}
         unmountOnExit
       >
-        <div ref={nodeRef}>
+        <div ref={modalRef}>
           <div className={styles.modalOverlay} />
 
           <div aria-modal className={styles.modalContainer} role='dialog'>

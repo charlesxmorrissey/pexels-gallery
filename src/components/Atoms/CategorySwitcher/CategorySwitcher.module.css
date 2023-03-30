@@ -5,10 +5,11 @@
 .categoryBtn {
   align-items: center;
   background-color: var(--color-grey-200);
-  border: 0;
+  color: inherit;
   display: flex;
   font-size: 12px;
   font-weight: var(--font-weight-semibold);
+  gap: var(--space-4);
   height: 40px;
   padding: 8px 16px;
   text-transform: capitalize;
@@ -29,6 +30,13 @@
   color: var(--color-grey-50);
 }
 
+.categoryIcon {
+  display: none;
+  fill: currentcolor;
+  height: 24px;
+  width: 24px;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .categoryBtn:not(.categoryBtnActive):focus,
   .categoryBtn:not(.categoryBtnActive):hover {
@@ -40,5 +48,9 @@
   .categoryBtn {
     font-size: 14px;
     height: 50px;
+  }
+
+  .categoryIcon {
+    display: block;
   }
 }

@@ -1,8 +1,9 @@
 import Link from 'next/link'
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 
 import { PhotoCard, VideoCard } from 'components/Molecules/Card'
 import { Modal } from 'components/Molecules/Modal'
+import ModalContent from 'components/Organisms/ModalContent'
 import { Category } from 'constant'
 import { useModal } from 'hooks'
 import { Photo, Video } from 'types'
@@ -17,13 +18,25 @@ interface Props {
 
 const Gallery = ({ category, media, searchTerm }: Props) => {
   const { hideModal, isVisible, showModal } = useModal()
+  const [modalData, setModalData] = useState<any>()
 
   const isPhotos = category === Category.photos
   const Card = isPhotos ? PhotoCard : VideoCard
 
-  const handleClickOpenModal = useCallback(() => {
-    showModal()
-  }, [showModal])
+  const getModalData = useCallback(
+    (id: number) => media.find((item) => id === item.id),
+    [media]
+  )
+
+  const handleClickOpenModal = useCallback(
+    (id: number) => {
+      const detail = getModalData(id)
+
+      setModalData(detail)
+      showModal()
+    },
+    [getModalData, showModal]
+  )
 
   return (
     <div className={styles.gallery}>
@@ -53,8 +66,15 @@ const Gallery = ({ category, media, searchTerm }: Props) => {
       )}
 
       <Modal
+        className={styles.galleryModal}
         isVisible={isVisible}
-        modalContent={<p>Placeholder</p>}
+        modalContent={
+          <ModalContent
+            category={category}
+            data={modalData}
+            onDismiss={hideModal}
+          />
+        }
         toggleVisibility={hideModal}
       />
     </div>

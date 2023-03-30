@@ -1,6 +1,8 @@
 import classNames from 'classnames'
 import { useCallback, useState } from 'react'
 
+import PhotoIcon from 'assets/icons/photo.svg'
+import VideoIcon from 'assets/icons/video.svg'
 import { Category } from 'constant'
 
 import styles from './CategorySwitcher.module.css'
@@ -32,6 +34,7 @@ const CategorySwitcher = ({ category, onClickCategory }: Props) => {
         onClick={() => handleClickCategory(Category.photos)}
         type='button'
       >
+        <PhotoIcon className={styles.categoryIcon} />
         {Category.photos}
       </button>
 
@@ -42,6 +45,7 @@ const CategorySwitcher = ({ category, onClickCategory }: Props) => {
         onClick={() => handleClickCategory(Category.videos)}
         type='button'
       >
+        <VideoIcon className={styles.categoryIcon} />
         {Category.videos}
       </button>
     </div>

@@ -23,15 +23,11 @@
 .searchBtn {
   align-items: center;
   background-color: transparent;
-  border: 0;
-  bottom: 0;
-  cursor: pointer;
   display: flex;
+  inset: 0 0 0 auto;
   margin: 0;
   outline: none;
   position: absolute;
-  right: 0;
-  top: 0;
 }
 
 .searchBtn:disabled {

@@ -43,9 +43,9 @@
 
   .modalContent {
     border-radius: var(--border-radius-small);
-    height: 608px;
+    height: 600px;
     padding: var(--space-32);
-    width: 510px;
+    width: 600px;
     will-change: transform;
   }
 

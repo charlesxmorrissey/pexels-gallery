@@ -5,7 +5,7 @@ interface Props {
 }
 
 const PageLayout = ({ children }: Props) => (
-  <main className={styles.pageWrapper}>
+  <main className={styles.pageWrapper} role='main'>
     <div className={styles.pageContainer}>
       <div className={styles.pageContent}>{children}</div>
     </div>

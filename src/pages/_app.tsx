@@ -15,6 +15,8 @@ const App = ({ Component, pageProps }: AppProps) => (
       <meta content='Gallery using the Pexels api' name='description' />
       <meta content='width=device-width, initial-scale=1' name='viewport' />
       <link href='/favicon.ico' rel='icon' />
+      <link href='https://api.pexels.com' rel='preconnect' />
+      <link href='https://api.pexels.com' rel='dns-prefetch' />
     </Head>
 
     <style global jsx>{`
