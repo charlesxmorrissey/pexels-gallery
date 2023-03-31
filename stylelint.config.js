@@ -31,6 +31,7 @@ module.exports = {
     ],
     'function-name-case': 'lower',
     'function-url-no-scheme-relative': true,
+    'import-notation': null,
     'length-zero-no-unit': true,
     'no-invalid-position-at-import-rule': null,
     'order/properties-order': [

@@ -1,0 +1,79 @@
+.modalContent {
+  height: 100%;
+}
+
+.modalContentHeader {
+  align-items: center;
+  background-color: var(--color-grey-50);
+  box-shadow: var(--box-shadow-bottom);
+  display: flex;
+  height: 48px;
+  margin: 0 -16px;
+  padding: 0 var(--space-16);
+  position: relative;
+}
+
+.modalContentHeaderTitle {
+  margin: 0;
+}
+
+.modalContentCloseBtn {
+  align-items: center;
+  color: var(--color-grey-900);
+  display: flex;
+  height: 48px;
+  inset: 0 0 0 auto;
+  justify-content: center;
+  position: absolute;
+  width: 48px;
+}
+
+.modalContentCloseIcon {
+  fill: currentcolor;
+  height: 20px;
+  width: 20px;
+}
+
+.modalContentWrapper {
+  align-items: center;
+  display: flex;
+  height: calc(100% - var(--space-48));
+  justify-content: center;
+  position: relative;
+}
+
+.modalContentImage {
+  height: 100%;
+  object-fit: contain;
+  opacity: 0.25;
+  transition: opacity var(--transition-timing-2) ease;
+  width: 100%;
+}
+
+.modalContentImageLoaded {
+  opacity: 1;
+}
+
+.modalContentVideo {
+  height: auto;
+  max-height: 100%;
+  width: 100%;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .modalContentCloseBtn:focus,
+  .modalContentCloseBtn:hover {
+    color: var(--color-blue-700);
+  }
+}
+
+@media (--medium-viewport) {
+  .modalContentHeader {
+    margin: 0 -32px;
+    padding: 0 var(--space-24);
+  }
+
+  .modalContentCloseBtn {
+    inset: 0 var(--space-8) 0 auto;
+  }
+}

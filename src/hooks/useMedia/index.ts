@@ -5,7 +5,7 @@ import { ApiBaseUrl, Category, MediaPerPage } from 'constant'
 import { Params, Photos, Videos } from 'types'
 import { fetchData, getPath, stringifyParams } from 'utils'
 
-const useMedia = (fallbackData: Photos | Videos) => {
+export const useMedia = (fallbackData: Photos | Videos) => {
   const { query: { category = Category.photos, query } = {} } = useRouter()
   const { path } = getPath(!!query)[Category[category as Category]]
 
@@ -32,5 +32,3 @@ const useMedia = (fallbackData: Photos | Videos) => {
     mediaData: data,
   }
 }
-
-export default useMedia

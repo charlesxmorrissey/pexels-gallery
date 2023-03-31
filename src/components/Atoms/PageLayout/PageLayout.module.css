@@ -19,7 +19,6 @@
 }
 
 .pageContent {
-  max-width: var(--max-width);
   width: 100%;
 }
 
@@ -36,5 +35,11 @@
 @media (--medium-viewport) {
   .pagePadding {
     padding: 0 var(--space-32);
+  }
+}
+
+@media (--large-viewport) {
+  .pageContent {
+    max-width: var(--max-width);
   }
 }

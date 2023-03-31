@@ -9,7 +9,7 @@ interface Props {
   onSubmitSearch: (event: React.FormEvent<HTMLFormElement>) => void
 }
 
-const SearchForm = ({ onSubmitSearch }: Props) => {
+export const SearchForm = ({ onSubmitSearch }: Props) => {
   const { query: { query } = {} } = useRouter()
   const [term, setTerm] = useState<string | undefined>(query?.toString() || '')
 
@@ -46,5 +46,3 @@ const SearchForm = ({ onSubmitSearch }: Props) => {
     </form>
   )
 }
-
-export default SearchForm

@@ -25,6 +25,11 @@
   display: block;
 }
 
+.galleryModal {
+  overflow: hidden;
+  padding-top: 0;
+}
+
 @media (--small-viewport) {
   .galleryWrapper {
     grid-template-columns: repeat(2, minmax(0, 1fr));

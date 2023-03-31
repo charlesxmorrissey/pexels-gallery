@@ -77,6 +77,7 @@ module.exports = {
         aspects: ['invalidHref', 'preferButton'],
       },
     ],
+    'jsx-a11y/media-has-caption': 0,
     'no-console': ['error', { allow: ['warn', 'error'] }],
     'no-debugger': 'error',
     'prefer-arrow/prefer-arrow-functions': 'warn',

@@ -8,8 +8,15 @@ module.exports = {
       propList: ['*'],
       rootValue: 16,
     },
+    'postcss-import': {},
+    'postcss-mixins': {
+      mixinsDir: path.join(__dirname, './src/assets/styles'),
+    },
     'postcss-custom-media': {
-      importFrom: path.join(__dirname, './src/assets/styles/app.css'),
+      importFrom: path.join(
+        __dirname,
+        './src/assets/styles/base/variables.css'
+      ),
     },
     'postcss-preset-env': {
       autoprefixer: {

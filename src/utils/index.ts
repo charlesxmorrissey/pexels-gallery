@@ -1,5 +1,5 @@
 import { Category, ResourcePath } from 'constant'
-import { Params } from 'types'
+import { CategoryType, Params } from 'types'
 
 export const fetchData = async (url: string, params: Params) => {
   try {
@@ -18,6 +18,9 @@ export const fetchData = async (url: string, params: Params) => {
     console.error('There has been a problem::', error)
   }
 }
+
+export const isPhotos = (category: CategoryType): boolean =>
+  category === Category.photos
 
 export const stringifyParams = <T extends Params>(params: T) =>
   Object.keys(params)

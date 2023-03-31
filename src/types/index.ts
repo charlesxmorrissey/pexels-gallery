@@ -1,3 +1,7 @@
+import { Category } from 'constant'
+
+export type CategoryType = Category | string | string[]
+
 export interface Params {
   [key: string]: string | number | undefined
 }

@@ -1,0 +1,93 @@
+.card {
+  margin-bottom: var(--space-8);
+}
+
+.cardImageWrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+.cardBtn {
+  background-color: transparent;
+  border-radius: var(--border-radius-small);
+  display: block;
+  height: 100%;
+  inset: 0;
+  padding: 0;
+  position: absolute;
+  transition: background-color var(--transition-timing-2) ease;
+}
+
+.cardImageWrapperFill {
+  aspect-ratio: 2/3;
+  max-height: 513px;
+  width: 100%;
+}
+
+.cardImage {
+  border-radius: var(--border-radius-small);
+  opacity: 0.25;
+  transform: translate3d(0, 0, 0);
+  transition: opacity var(--transition-timing-2) ease;
+  width: 100%;
+}
+
+.cardImageLoaded {
+  opacity: 1;
+}
+
+.cardImageFill {
+  background-color: var(--color-grey-400);
+  object-fit: cover;
+}
+
+.cardPlayIcon {
+  bottom: var(--space-8);
+  fill: var(--color-grey-50);
+  filter: drop-shadow(0 0 1px rgb(12 26 75 / 20%))
+    drop-shadow(0 1px 3px rgb(50 50 71 / 10%));
+  height: 23px;
+  left: var(--space-8);
+  position: absolute;
+  width: 28px;
+}
+
+.cardMeta {
+  align-items: center;
+  display: flex;
+  gap: var(--space-8);
+  justify-content: space-between;
+  padding: var(--space-8) 0;
+}
+
+.cardMetaName {
+  font-weight: var(--font-weight-medium);
+  margin: 0;
+}
+
+.cardLink {
+  align-items: center;
+  color: var(--color-blue-700);
+  display: flex;
+  height: 48px;
+  justify-content: flex-end;
+  width: 48px;
+}
+
+.cardLinkIcon {
+  fill: currentcolor;
+  height: 24px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cardBtn:focus,
+  .cardBtn:hover {
+    background-color: rgb(0 0 0 / 40%);
+  }
+
+  .cardLink:focus,
+  .cardLink:hover {
+    color: var(--color-grey-900);
+    text-decoration: none;
+  }
+}
