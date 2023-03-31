@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { memo, useCallback, useState } from 'react'
 
-import { PhotoCard, VideoCard } from 'components/Molecules/Card'
+import { PhotoCard, TextCard, VideoCard } from 'components/Molecules/Card'
 import { Modal } from 'components/Molecules/Modal'
 import { ModalContent } from 'components/Organisms/ModalContent'
 import { useModal } from 'hooks'
@@ -17,12 +17,14 @@ interface Props {
 }
 
 const MemoizedModal = memo(Modal)
+const MemoizedPhotoCard = memo(PhotoCard)
+const MemoizedVideoCard = memo(VideoCard)
 
 const Gallery = ({ category, media, searchTerm }: Props) => {
   const { hideModal, isVisible, showModal } = useModal()
   const [modalData, setModalData] = useState<any>()
 
-  const Card = isPhotos(category) ? PhotoCard : VideoCard
+  const Card = isPhotos(category) ? MemoizedPhotoCard : MemoizedVideoCard
 
   const getModalData = useCallback(
     (id: number) => media.find((item) => id === item.id),
@@ -43,6 +45,10 @@ const Gallery = ({ category, media, searchTerm }: Props) => {
     <div className={styles.gallery}>
       {!!media.length ? (
         <div className={styles.galleryWrapper}>
+          <div className={styles.galleryTextCard}>
+            <TextCard category={category} searchTerm={searchTerm} />
+          </div>
+
           {media.map((asset, index) => (
             <Card
               data={asset}

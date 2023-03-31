@@ -1,4 +1,5 @@
 import { PhotoCard } from './Photo'
+import { TextCard } from './Text'
 import { VideoCard } from './Video'
 
 export interface CardProps {
@@ -6,4 +7,4 @@ export interface CardProps {
   priority?: boolean
 }
 
-export { PhotoCard, VideoCard }
+export { PhotoCard, TextCard, VideoCard }

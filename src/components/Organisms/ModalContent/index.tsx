@@ -48,7 +48,6 @@ export const ModalContent = ({ category, data, onDismiss }: Props) => {
               (max-width: 1200px) 50vw,
               33vw'
             src={data?.src.large}
-            style={{ backgroundColor: `${data?.avg_color}3F` }}
           />
         )}
 

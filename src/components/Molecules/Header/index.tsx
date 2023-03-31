@@ -45,7 +45,7 @@ export const Header = () => {
             className={styles.headerIcon}
           />
 
-          <h1 className={styles.headerTitle}>Pexels</h1>
+          <span className={styles.headerTitle}>Pexels</span>
         </Link>
 
         <nav className={styles.headerNav}>
