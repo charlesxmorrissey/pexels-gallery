@@ -13,3 +13,5 @@ export enum ResourcePath {
   search = 'search',
   searchVideos = 'videos/search',
 }
+
+export const TransitionDuration = 300

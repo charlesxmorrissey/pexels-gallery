@@ -1,27 +1,28 @@
 import Link from 'next/link'
-import { useCallback, useState } from 'react'
+import { memo, useCallback, useState } from 'react'
 
 import { PhotoCard, VideoCard } from 'components/Molecules/Card'
 import { Modal } from 'components/Molecules/Modal'
-import ModalContent from 'components/Organisms/ModalContent'
-import { Category } from 'constant'
+import { ModalContent } from 'components/Organisms/ModalContent'
 import { useModal } from 'hooks'
-import { Photo, Video } from 'types'
+import { CategoryType, Photo, Video } from 'types'
+import { isPhotos } from 'utils'
 
 import styles from './Gallery.module.css'
 
 interface Props {
-  category: Category | string | string[]
+  category: CategoryType
   media: Photo[] & Video[]
   searchTerm: string | undefined
 }
+
+const MemoizedModal = memo(Modal)
 
 const Gallery = ({ category, media, searchTerm }: Props) => {
   const { hideModal, isVisible, showModal } = useModal()
   const [modalData, setModalData] = useState<any>()
 
-  const isPhotos = category === Category.photos
-  const Card = isPhotos ? PhotoCard : VideoCard
+  const Card = isPhotos(category) ? PhotoCard : VideoCard
 
   const getModalData = useCallback(
     (id: number) => media.find((item) => id === item.id),
@@ -65,7 +66,7 @@ const Gallery = ({ category, media, searchTerm }: Props) => {
         </>
       )}
 
-      <Modal
+      <MemoizedModal
         className={styles.galleryModal}
         isVisible={isVisible}
         modalContent={

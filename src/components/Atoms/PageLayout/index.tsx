@@ -1,11 +1,15 @@
+import { Header } from 'components/Molecules/Header'
+
 import styles from './PageLayout.module.css'
 
 interface Props {
   children: React.ReactNode
 }
 
-const PageLayout = ({ children }: Props) => (
+export const PageLayout = ({ children }: Props) => (
   <main className={styles.pageWrapper} role='main'>
+    <Header />
+
     <div className={styles.pageContainer}>
       <div className={styles.pageContent}>{children}</div>
     </div>
@@ -17,5 +21,3 @@ const PageLayout = ({ children }: Props) => (
     </footer>
   </main>
 )
-
-export default PageLayout

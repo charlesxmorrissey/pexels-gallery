@@ -70,7 +70,7 @@
   color: var(--color-blue-700);
   display: flex;
   height: 48px;
-  justify-content: center;
+  justify-content: flex-end;
   width: 48px;
 }
 

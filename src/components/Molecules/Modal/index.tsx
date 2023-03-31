@@ -3,11 +3,16 @@ import dynamic from 'next/dynamic'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
 import { CSSTransition } from 'react-transition-group'
 
+import { TransitionDuration } from 'constant'
+
 import styles from './Modal.module.css'
 
-const Portal = dynamic(() => import('components/Atoms/Portal'), {
-  ssr: false,
-})
+const Portal = dynamic(
+  () => import('components/Atoms/Portal').then((module) => module.ReactPortal),
+  {
+    ssr: false,
+  }
+)
 
 interface Props {
   className?: string
@@ -77,7 +82,7 @@ export const Modal = ({
         in={isVisible}
         mountOnEnter
         nodeRef={modalRef}
-        timeout={{ enter: 300, exit: 300 }}
+        timeout={{ enter: TransitionDuration, exit: TransitionDuration }}
         unmountOnExit
       >
         <div ref={modalRef}>

@@ -16,7 +16,7 @@ interface Props {
   wrapperId?: string
 }
 
-const ReactPortal = ({
+export const ReactPortal = ({
   children,
   wrapperId = 'react-portal-wrapper',
 }: Props) => {
@@ -46,5 +46,3 @@ const ReactPortal = ({
 
   return createPortal(children, wrapperElement)
 }
-
-export default ReactPortal

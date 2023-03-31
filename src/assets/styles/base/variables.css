@@ -7,6 +7,7 @@
 :root {
   --border-radius-xsmall: 0.25rem;
   --border-radius-small: 0.5rem;
+  --box-shadow-bottom: 0 2px 2px -2px rgb(0 0 0 / 25%);
   --color-blue-700: #1976d2;
   --color-grey-50: #fafafa;
   --color-grey-100: #f5f5f5;
@@ -18,9 +19,6 @@
   --color-grey-700: #616161;
   --color-grey-800: #424242;
   --color-grey-900: #212121;
-  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
-    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
-    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
   --font-weight-bold: 700;
   --font-weight-semibold: 600;
   --font-weight-medium: 500;
@@ -32,6 +30,7 @@
   --space-24: 1.5rem;
   --space-32: 2rem;
   --space-48: 3rem;
+  --space-64: 4rem;
   --transition-timing-1: 100ms;
   --transition-timing-2: 200ms;
   --transition-timing-3: 300ms;

@@ -6,6 +6,7 @@ const nextConfig = {
   images: {
     domains: ['images.pexels.com'],
   },
+
   reactStrictMode: true,
 
   webpack: (config) => {

@@ -5,6 +5,7 @@
 .modalContentHeader {
   align-items: center;
   background-color: var(--color-grey-50);
+  box-shadow: var(--box-shadow-bottom);
   display: flex;
   height: 48px;
   margin: 0 -16px;
@@ -51,6 +52,12 @@
 
 .modalContentImageLoaded {
   opacity: 1;
+}
+
+.modalContentVideo {
+  height: auto;
+  max-height: 100%;
+  width: 100%;
 }
 
 @media (hover: hover) and (pointer: fine) {

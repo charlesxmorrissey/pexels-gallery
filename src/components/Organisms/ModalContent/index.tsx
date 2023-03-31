@@ -3,22 +3,19 @@ import Image from 'next/image'
 import { useState } from 'react'
 
 import CloseIcon from 'assets/icons/close.svg'
-import { Category } from 'constant'
+import { CategoryType } from 'types'
+import { isPhotos } from 'utils'
 
 import styles from './ModalContent.module.css'
 
 interface Props {
-  category: Category | string | string[]
+  category: CategoryType
   data?: any
   onDismiss: () => void
 }
 
-const ModalContent = ({ category, data, onDismiss }: Props) => {
+export const ModalContent = ({ category, data, onDismiss }: Props) => {
   const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false)
-  const isPhoto = category === Category.photos
-
-  // console.log('ModalContent::', data)
-  // console.log('ModalContent::', category)
 
   return (
     <div className={styles.modalContent}>
@@ -33,12 +30,12 @@ const ModalContent = ({ category, data, onDismiss }: Props) => {
         </button>
 
         <h4 className={styles.modalContentHeaderTitle}>
-          {isPhoto ? data?.photographer : data?.user?.name}
+          {isPhotos(category) ? data?.photographer : data?.user?.name}
         </h4>
       </header>
 
       <div className={styles.modalContentWrapper}>
-        {isPhoto && (
+        {isPhotos(category) && (
           <Image
             alt={data?.alt}
             className={classNames(styles.modalContentImage, {
@@ -55,10 +52,20 @@ const ModalContent = ({ category, data, onDismiss }: Props) => {
           />
         )}
 
-        {!isPhoto && <p>Video here</p>}
+        {!isPhotos(category) && (
+          <video
+            className={styles.modalContentVideo}
+            controls
+            height={data?.video_files[2].height}
+            poster={data?.image}
+            src={data?.video_files[2].link}
+            style={{
+              aspectRatio: `${data?.video_files[2].width}/${data?.video_files[2].height}`,
+            }}
+            width={data?.video_files[2].width}
+          />
+        )}
       </div>
     </div>
   )
 }
-
-export default ModalContent
