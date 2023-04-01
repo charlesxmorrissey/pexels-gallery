@@ -18,7 +18,8 @@ export const TextCard = ({ category, searchTerm }: Props) => {
     if (searchTerm) {
       subtitle = (
         <>
-          <span className={styles.textHighlight}>term:</span> {searchTerm}
+          <span className={styles.textHighlight}>Search term: </span>
+          {searchTerm}
         </>
       )
     } else if (isPhotos(category)) {

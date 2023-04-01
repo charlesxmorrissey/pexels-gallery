@@ -65,7 +65,7 @@ const Gallery = ({ category, media, searchTerm }: Props) => {
               data={asset}
               key={asset.id}
               onClickOpenModal={handleClickOpenModal}
-              priority={!!(index <= 4)}
+              priority={!!(index <= 2)}
             />
           ))}
         </div>
