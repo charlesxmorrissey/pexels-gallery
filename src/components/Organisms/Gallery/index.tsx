@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { memo, useCallback, useState } from 'react'
+import { useRouter } from 'next/router'
+import { memo, useCallback, useEffect, useState } from 'react'
 
 import { PhotoCard, TextCard, VideoCard } from 'components/Molecules/Card'
 import { Modal } from 'components/Molecules/Modal'
@@ -23,6 +24,7 @@ const MemoizedVideoCard = memo(VideoCard)
 const Gallery = ({ category, media, searchTerm }: Props) => {
   const { hideModal, isVisible, showModal } = useModal()
   const [modalData, setModalData] = useState<any>()
+  const { events } = useRouter()
 
   const Card = isPhotos(category) ? MemoizedPhotoCard : MemoizedVideoCard
 
@@ -40,6 +42,15 @@ const Gallery = ({ category, media, searchTerm }: Props) => {
     },
     [getModalData, showModal]
   )
+
+  // If the modal is open, close it when changing routes.
+  useEffect(() => {
+    if (isVisible) {
+      events.on('routeChangeStart', hideModal)
+
+      return () => events.off('routeChangeStart', hideModal)
+    }
+  }, [events, hideModal, isVisible])
 
   return (
     <div className={styles.gallery}>

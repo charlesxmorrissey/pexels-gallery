@@ -35,9 +35,9 @@ export const ModalContent = ({ category, data, onDismiss }: Props) => {
       </header>
 
       <div className={styles.modalContentWrapper}>
-        {isPhotos(category) && (
+        {isPhotos(category) && !!data?.src && (
           <Image
-            alt={data?.alt}
+            alt={data?.alt || ''}
             className={classNames(styles.modalContentImage, {
               [styles.modalContentImageLoaded]: isImageLoaded,
             })}
@@ -45,23 +45,23 @@ export const ModalContent = ({ category, data, onDismiss }: Props) => {
             onLoadingComplete={() => setIsImageLoaded(true)}
             priority
             sizes='(max-width: 768px) 100vw,
-              (max-width: 1200px) 50vw,
+              (max-width: 1024px) 50vw,
               33vw'
-            src={data?.src.large}
+            src={data?.src?.large}
           />
         )}
 
-        {!isPhotos(category) && (
+        {!isPhotos(category) && !!data?.video_files && (
           <video
             className={styles.modalContentVideo}
             controls
-            height={data?.video_files[2].height}
+            height={data?.video_files[2]?.height}
             poster={data?.image}
-            src={data?.video_files[2].link}
+            src={data?.video_files[2]?.link}
             style={{
-              aspectRatio: `${data?.video_files[2].width}/${data?.video_files[2].height}`,
+              aspectRatio: `${data?.video_files[2]?.width}/${data?.video_files[2]?.height}`,
             }}
-            width={data?.video_files[2].width}
+            width={data?.video_files[2]?.width}
           />
         )}
       </div>

@@ -6,7 +6,7 @@
 .textSubtitle {
   letter-spacing: -0.02em;
   line-height: 1.2;
-  margin: 8px 0;
+  margin: var(--space-8) 0;
   text-transform: capitalize;
 }
 
@@ -50,7 +50,7 @@
 @media (--large-viewport) {
   .textHeadline {
     font-size: 80px;
-    margin: 16px 0 0;
+    margin: var(--space-16) 0 0;
   }
 
   .textSubtitle {
