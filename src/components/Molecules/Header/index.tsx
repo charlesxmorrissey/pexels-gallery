@@ -21,6 +21,9 @@ export const Header = () => {
     [router]
   )
 
+  /**
+   * Return a memoized version of the callback function that only changes if one of the dependencies has changed
+   */
   const handleSubmitSearch = useCallback(
     (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault()

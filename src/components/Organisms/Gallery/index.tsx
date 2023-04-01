@@ -17,6 +17,9 @@ interface Props {
   searchTerm: string | undefined
 }
 
+/**
+ Improves performance because it memoizes the result and skips rendering to reuse the last rendered result.
+ */
 const MemoizedModal = memo(Modal)
 const MemoizedPhotoCard = memo(PhotoCard)
 const MemoizedVideoCard = memo(VideoCard)
@@ -28,6 +31,9 @@ const Gallery = ({ category, media, searchTerm }: Props) => {
 
   const Card = isPhotos(category) ? MemoizedPhotoCard : MemoizedVideoCard
 
+  /**
+   * Return a memoized version of the callback function that only changes if one of the dependencies has changed
+   */
   const getModalData = useCallback(
     (id: number) => media.find((item) => id === item.id),
     [media]
@@ -43,7 +49,9 @@ const Gallery = ({ category, media, searchTerm }: Props) => {
     [getModalData, showModal]
   )
 
-  // If the modal is open, close it when changing routes.
+  /**
+   * If the modal is open, close it when changing routes.
+   */
   useEffect(() => {
     if (isVisible) {
       events.on('routeChangeStart', hideModal)
@@ -65,7 +73,7 @@ const Gallery = ({ category, media, searchTerm }: Props) => {
               data={asset}
               key={asset.id}
               onClickOpenModal={handleClickOpenModal}
-              priority={!!(index <= 2)}
+              priority={!!(index <= 2)} // Prioritize the image for loading (e.g. through preload tags or priority hints), leading to a meaningful boost in LCP.
             />
           ))}
         </div>

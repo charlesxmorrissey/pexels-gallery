@@ -40,8 +40,8 @@ export const VideoCard = ({
           })}
           fill
           onLoadingComplete={() => setIsImageLoaded(true)}
-          priority={priority}
-          sizes='(min-width: 768px) 33vw, 100vw'
+          priority={priority} // Prioritize the image for loading (e.g. through preload tags or priority hints), leading to a meaningful boost in LCP.
+          sizes='(min-width: 768px) 33vw, 100vw' // The sizes property serves important purposes related to image performance: The value of sizes is used by the browser to determine which size of the image to download, from next/image's automatically-generated source set. When the browser chooses, it does not yet know the size of the image on the page, so it selects an image that is the same size or larger than the viewport. The sizes property allows you to tell the browser that the image will actually be smaller than full screen.
           src={image}
         />
 

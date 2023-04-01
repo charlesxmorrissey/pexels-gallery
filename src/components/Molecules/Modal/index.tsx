@@ -29,6 +29,9 @@ export const Modal = ({
 }: Props) => {
   const modalRef = useRef<HTMLDivElement>(null)
 
+  /**
+   * Trap the focus in the modal: since the modal is an inert component, the keyboard navigation should be trapped inside of it once it’s open.
+   */
   const handleTabKey = useCallback((e: KeyboardEvent) => {
     const focusableModalElements =
       modalRef &&
@@ -63,6 +66,9 @@ export const Modal = ({
 
   useEffect(() => {
     if (isVisible) {
+      /**
+       * We should be able to open & close the modal just using the keyboard.
+       */
       const keyListener = (e: KeyboardEvent) => {
         const listener = keyListenersMap.get(e.key)
 

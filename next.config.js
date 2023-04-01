@@ -10,7 +10,7 @@ const nextConfig = {
   reactStrictMode: true,
 
   webpack: (config) => {
-    // Adds support for SVGR which transforms SVG assets into React components.
+    // Add support for `SVGR` which transforms SVG assets into React components.
     config.module.rules.push({
       test: /\.svg$/i,
       issuer: { and: [/\.(js|ts)x?$/] },
