@@ -5,6 +5,7 @@
 }
 
 .searchInput {
+  appearance: none;
   background-color: var(--color-grey-200);
   border: 0;
   border-radius: var(--border-radius-small);
