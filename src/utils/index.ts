@@ -6,7 +6,7 @@ import { CategoryType, Params } from 'types'
  *
  * @param url The api url.
  * @param params Query string key-value pairs.
- * @returns A asyncrouns fetch function.
+ * @returns A asynchronous fetch function.
  */
 export const fetchData = async (url: string, params: Params) => {
   try {
@@ -36,7 +36,7 @@ export const isPhotos = (category: CategoryType): boolean =>
   category === Category.photos
 
 /**
- * Construct a query string from an object containing ky-value pairs.
+ * Construct a query string from an object containing key-value pairs.
  *
  * @param params Query string key-value pairs.
  * @returns A querystring.
