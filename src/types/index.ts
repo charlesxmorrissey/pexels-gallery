@@ -70,5 +70,5 @@ export interface Video {
   width: number
 }
 
-export type Photos = PaginationObject & { photos: Photo[] }
-export type Videos = PaginationObject & { videos: Video[] }
+export type Photos = PaginationObject & { [key: string]: Photo[] }
+export type Videos = PaginationObject & { [key: string]: Video[] }
