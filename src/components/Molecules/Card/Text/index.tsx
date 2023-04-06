@@ -40,13 +40,8 @@ export const TextCard = ({ category, searchTerm }: Props) => {
         <p className={styles.textBody}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco.
-        </p>
-
-        <p className={styles.textBody}>
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-          dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          proident.
+          minim veniam, quis nostrud exercitation ullamco. Duis aute irure dolor
+          in reprehenderit in voluptate velit esse cillum dolore eu fugiat.
         </p>
       </div>
     </div>

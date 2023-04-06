@@ -14,9 +14,6 @@ export const useMedia = (fallbackData: Photos | Videos) => {
     ...(query && { query: query.toString() }),
   }
 
-  /**
-   SWR is a strategy to first return the data from cache (stale), then send the fetch request (revalidate), and finally come with the up-to-date data.
-   */
   const { data, error, isLoading } = useSWR(
     `${ApiBaseUrl}${path}?${stringifyParams(params || {})}`,
     () => fetchData(`${ApiBaseUrl}${path}`, params),

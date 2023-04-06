@@ -43,7 +43,7 @@ export const ModalContent = ({ category, data, onDismiss }: Props) => {
             })}
             fill
             onLoadingComplete={() => setIsImageLoaded(true)}
-            priority // Prioritize the image for loading (e.g. through preload tags or priority hints), leading to a meaningful boost in LCP.
+            priority
             sizes='(max-width: 768px) 100vw,
               (max-width: 1024px) 50vw,
               33vw'

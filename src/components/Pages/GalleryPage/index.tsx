@@ -14,11 +14,6 @@ export const GalleryPage: NextPage<Props> = ({ mediaData }) => (
   <GalleryTemplate fallbackData={mediaData} />
 )
 
-/**
-  Server-side rendering (SSR) addresses the performance and search engine optimization issues of single-page JavaScript applications. In contrast to client-side rendering, it generates static content on the server before sending it over to the user’s browser.
-
-  Server-side rendering improves site speed and results in better Core Web Vitals scores.
- */
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {

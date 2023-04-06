@@ -26,13 +26,13 @@ export const PhotoCard = ({
           className={classNames(styles.cardImage, {
             [styles.cardImageLoaded]: isImageLoaded,
           })}
-          height={513} // Specify height `width` to elimated CLS.
+          height={513}
           onLoadingComplete={() => setIsImageLoaded(true)}
-          priority={priority} // Prioritize the image for loading (e.g. through preload tags or priority hints), leading to a meaningful boost in LCP.
-          sizes='(min-width: 768px) 33vw, 100vw' // The sizes property serves important purposes related to image performance: The value of sizes is used by the browser to determine which size of the image to download, from next/image's automatically-generated source set. When the browser chooses, it does not yet know the size of the image on the page, so it selects an image that is the same size or larger than the viewport. The sizes property allows you to tell the browser that the image will actually be smaller than full screen.
+          priority={priority}
+          sizes='(min-width: 768px) 33vw, 100vw'
           src={src.portrait}
-          style={{ backgroundColor: `${avg_color}` }} // Provide a colored placeholder until the image is downloaded and displayed. This improves LCP and CLS.
-          width={342} // Specify image `width` to elimated CLS.
+          style={{ backgroundColor: `${avg_color}` }}
+          width={342}
         />
 
         <button
