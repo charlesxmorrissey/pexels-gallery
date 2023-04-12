@@ -1,7 +1,6 @@
 import { useMemo } from 'react'
 
-import { ResourcePath } from 'constant'
-import { CategoryType } from 'types'
+import { CategoryType, ResourcePath } from 'types'
 import { isPhotos } from 'utils'
 
 import styles from './Text.module.css'

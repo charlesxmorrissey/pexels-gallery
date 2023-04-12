@@ -1,23 +1,26 @@
-import { Category, ResourcePath } from 'constant'
-import { CategoryType, Params } from 'types'
+import { ApiBaseUrl } from 'constant'
+import { Category, CategoryType, Params, ResourcePath } from 'types'
 
 /**
  * Wrapper for fetch to accept query params as options.
  *
- * @param url The api url.
+ * @param path The api path.
  * @param params Query string key-value pairs.
  * @returns A asynchronous fetch function.
  */
-export const fetchData = async (url: string, params: Params) => {
+export const fetchData = async (path: string, params: Params) => {
   try {
-    const response = await fetch(`${url}?${stringifyParams(params || {})}`, {
-      headers: {
-        Accept: 'application/json',
-        Authorization: process.env.NEXT_PUBLIC_PEXELS_API_KEY ?? '',
-        'Content-Type': 'application/json',
-      },
-      method: 'GET',
-    })
+    const response = await fetch(
+      `${ApiBaseUrl}${path}?${stringifyParams(params || {})}`,
+      {
+        headers: {
+          Accept: 'application/json',
+          Authorization: process.env.NEXT_PUBLIC_PEXELS_API_KEY ?? '',
+          'Content-Type': 'application/json',
+        },
+        method: 'GET',
+      }
+    )
     const result = await response.json()
 
     return result

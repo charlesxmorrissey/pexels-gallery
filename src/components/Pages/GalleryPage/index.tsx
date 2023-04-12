@@ -2,16 +2,19 @@ import type { NextPage } from 'next'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
 
 import { GalleryTemplate } from 'components/PageTemplates/GalleryTemplate'
-import { ApiBaseUrl, Category, MediaPerPage } from 'constant'
-import { Params, Photos, Videos } from 'types'
+import { MediaProvider } from 'components/Providers/MediaProvider'
+import { MediaPerPage } from 'constant'
+import { Category, MediaType, Params } from 'types'
 import { fetchData, getPath } from 'utils'
 
 interface Props {
-  mediaData: Photos | Videos
+  mediaData: MediaType
 }
 
 export const GalleryPage: NextPage<Props> = ({ mediaData }) => (
-  <GalleryTemplate fallbackData={mediaData} />
+  <MediaProvider>
+    <GalleryTemplate fallbackData={mediaData} />
+  </MediaProvider>
 )
 
 export const getServerSideProps: GetServerSideProps = async (
@@ -25,7 +28,7 @@ export const getServerSideProps: GetServerSideProps = async (
     ...(query && { query: query.toString() }),
   }
 
-  const mediaData = await fetchData(`${ApiBaseUrl}${path}`, params)
+  const mediaData = await fetchData(path, params)
 
   return {
     props: {

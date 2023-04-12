@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { memo, useCallback, useEffect, useState } from 'react'
 
-import { PhotoCard, TextCard, VideoCard } from 'components/Molecules/Card'
+import { PhotoCard, VideoCard } from 'components/Molecules/Card'
 import { Modal } from 'components/Molecules/Modal'
 import { ModalContent } from 'components/Organisms/ModalContent'
 import { useModal } from 'hooks'
@@ -13,7 +13,7 @@ import styles from './Gallery.module.css'
 
 interface Props {
   category: CategoryType
-  media: Photo[] & Video[]
+  media: (Photo & Video)[]
   searchTerm: string | undefined
 }
 
@@ -23,7 +23,7 @@ const MemoizedVideoCard = memo(VideoCard)
 
 const Gallery = ({ category, media, searchTerm }: Props) => {
   const { hideModal, isVisible, showModal } = useModal()
-  const [modalData, setModalData] = useState<any>()
+  const [modalData, setModalData] = useState<Photo & Video>()
   const { events } = useRouter()
 
   const Card = isPhotos(category) ? MemoizedPhotoCard : MemoizedVideoCard
@@ -58,10 +58,6 @@ const Gallery = ({ category, media, searchTerm }: Props) => {
     <div className={styles.gallery}>
       {!!media.length ? (
         <div className={styles.galleryWrapper}>
-          <div className={styles.galleryTextCard}>
-            <TextCard category={category} searchTerm={searchTerm} />
-          </div>
-
           {media.map((asset, index) => (
             <Card
               data={asset}

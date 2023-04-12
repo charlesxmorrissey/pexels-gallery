@@ -2,8 +2,7 @@ import classNames from 'classnames'
 
 import PhotoIcon from 'assets/icons/photo.svg'
 import VideoIcon from 'assets/icons/video.svg'
-import { Category } from 'constant'
-import { CategoryType } from 'types'
+import { Category, CategoryType } from 'types'
 import { isPhotos } from 'utils'
 
 import styles from './CategorySwitcher.module.css'

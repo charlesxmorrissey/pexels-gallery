@@ -3,14 +3,14 @@ import Image from 'next/image'
 import { useState } from 'react'
 
 import CloseIcon from 'assets/icons/close.svg'
-import { CategoryType } from 'types'
+import { CategoryType, Photo, Video } from 'types'
 import { isPhotos } from 'utils'
 
 import styles from './ModalContent.module.css'
 
 interface Props {
   category: CategoryType
-  data?: any
+  data?: Photo & Video
   onDismiss: () => void
 }
 

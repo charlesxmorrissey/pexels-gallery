@@ -5,7 +5,7 @@ import { useCallback } from 'react'
 import PexelsLogoIcon from 'assets/icons/pexelsLogo.svg'
 import { CategorySwitcher } from 'components/Atoms/CategorySwitcher'
 import { SearchForm } from 'components/Atoms/SearchForm'
-import { Category } from 'constant'
+import { Category } from 'types'
 
 import styles from './Header.module.css'
 

@@ -54,13 +54,14 @@ module.exports = {
       { blankLine: 'always', prev: 'iife', next: '*' },
     ],
     'arrow-body-style': ['error', 'as-needed'],
+    curly: 'error',
     'import-helpers/order-imports': [
       'error',
       {
         alphabetize: { order: 'asc', ignoreCase: false },
         groups: [
           'module',
-          '/^(assets|components|constant|hooks|pages|styles|types|utils)/',
+          '/^(assets|components|constant|hooks|pages|reducer|styles|types|utils)/',
           '/^styles/',
           '/^public/',
           ['sibling', 'index'],
@@ -77,7 +78,7 @@ module.exports = {
         aspects: ['invalidHref', 'preferButton'],
       },
     ],
-    'jsx-a11y/media-has-caption': 0,
+    'jsx-a11y/media-has-caption': 'off',
     'no-console': ['error', { allow: ['warn', 'error'] }],
     'no-debugger': 'error',
     'prefer-arrow/prefer-arrow-functions': 'warn',
@@ -86,7 +87,8 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'error',
     'react-hooks/rules-of-hooks': 'error',
     'react/display-name': 'off',
-    'react/jsx-filename-extension': [1, { extensions: ['.tsx', 'jsx'] }],
+    'react/jsx-curly-brace-presence': ['error', 'never'],
+    'react/jsx-filename-extension': ['error', { extensions: ['.jsx', '.tsx'] }],
     'react/jsx-sort-props': 'error',
     'react/no-children-prop': 'error',
     'react/no-unknown-property': [
